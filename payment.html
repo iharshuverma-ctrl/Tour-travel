@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{background:#f8f9fa;}
+
+.payment-box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+<h2 class="text-center mb-4">Payment Details</h2>
+
+<div class="row justify-content-center">
+<div class="col-md-6 payment-box">
+
+<!-- PAYMENT METHOD -->
+<label class="mb-2">Select Payment Method</label>
+<select class="form-control mb-3" onchange="showMethod(this.value)">
+<option value="card">Card Payment</option>
+<option value="upi">UPI Payment</option>
+</select>
+
+<!-- CARD FORM -->
+<div id="cardForm">
+<form onsubmit="return paymentSuccess()">
+
+<input type="text" class="form-control mb-3" placeholder="Card Holder Name" required>
+<input type="text" class="form-control mb-3" placeholder="Card Number" maxlength="16" required>
+
+<div class="row">
+<div class="col-md-6">
+<input type="text" class="form-control mb-3" placeholder="MM/YY" required>
+</div>
+<div class="col-md-6">
+<input type="password" class="form-control mb-3" placeholder="CVV" maxlength="3" required>
+</div>
+</div>
+
+<button class="btn btn-primary w-100">Pay Now</button>
+</form>
+</div>
+
+<!-- UPI FORM -->
+<div id="upiForm" style="display:none;">
+<form onsubmit="return paymentSuccess()">
+
+<input type="text" class="form-control mb-3" placeholder="Enter UPI ID (example@upi)" required>
+
+<button class="btn btn-success w-100">Pay via UPI</button>
+
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+function showMethod(method){
+if(method === "upi"){
+document.getElementById("upiForm").style.display = "block";
+document.getElementById("cardForm").style.display = "none";
+}else{
+document.getElementById("upiForm").style.display = "none";
+document.getElementById("cardForm").style.display = "block";
+}
+}
+
+function paymentSuccess(){
+alert("Payment Successful! Booking Confirmed 🎉");
+return false;
+}
+
+</script>
+
+</body>
+</html>
